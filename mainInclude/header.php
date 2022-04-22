@@ -24,7 +24,7 @@
     <title>eLMS</title>
   </head>
   <body>
-     <!-- Start Nagigation -->
+     <!-- Start Navigation -->
     <nav class="navbar navbar-expand-sm navbar-dark pl-5 fixed-top">
       <a href="index.php" class="navbar-brand">eLMS</a>
       <span class="navbar-text">Learn and Implement</span>
@@ -44,8 +44,9 @@
                 echo '<li class="nav-item custom-nav-item"><a href="#login" class="nav-link" data-toggle="modal" data-target="#stuLoginModalCenter">Login</a></li> <li class="nav-item custom-nav-item"><a href="#signup" class="nav-link" data-toggle="modal" data-target="#stuRegModalCenter">Signup</a></li>';
               }
           ?> 
-          <li class="nav-item custom-nav-item"><a href="#Feedback" class="nav-link">Feedback</a></li>
-          <li class="nav-item custom-nav-item"><a href="#Contact" class="nav-link">Contact</a></li>
+          <li class="nav-item custom-nav-item"><a href="Student/stufeedback.php" class="nav-link">Feedback</a></li>
+          <li class="nav-item custom-nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
+          <li class="nav-item custom-nav-item"><a href="#" class="nav-link">Register as VIP</a></li>
         </ul>
       </div>
     </nav> <!-- End Navigation -->

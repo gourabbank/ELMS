@@ -2,8 +2,8 @@
 if(!isset($_SESSION)){ 
   session_start(); 
 }
-define('TITLE', 'Lessons');
-define('PAGE', 'lessons');
+define('TITLE', 'Quiz');
+define('PAGE', 'quiz');
 include('./adminInclude/header.php'); 
 include('../dbConnection.php');
 

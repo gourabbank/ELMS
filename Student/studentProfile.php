@@ -21,6 +21,7 @@ include_once('../dbConnection.php');
  $stuName = $row["stu_name"]; 
  $stuOcc = $row["stu_occ"];
  $stuImg = $row["stu_img"];
+ $stuType = $row["user_type"];
 
 }
 
@@ -73,9 +74,49 @@ include_once('../dbConnection.php');
     <button type="submit" class="btn btn-primary" name="updateStuNameBtn">Update</button>
     <?php if(isset($passmsg)) {echo $passmsg; } ?>
   </form>
+  <form action="checkoutvip.php" method="post" >
+    <?php echo' <input type="hidden" name="id" value="500"> '?>
+    <?php if($stuType!=4) 
+          {
+            echo '<button type="submit" class="btn btn-secondary btn-lg m-5">Upgrade To VIP</button>';
+          }
+          else
+          {
+            echo '<h2 class=" m-5">Congratulations You are a Premium Subscriber</h2>';
+          }
+    ?>
+    
+  </form>
  </div>
 
  </div> <!-- Close Row Div from header file -->
+ <script>
+      // Render the PayPal button into #paypal-button-container
+      paypal.Buttons({
+
+          // Set up the transaction
+          createOrder: function(data, actions) {
+              return actions.order.create({
+                  purchase_units: [{
+                      amount: {
+                          value: '<?php if(isset($_POST['id'])){echo $_POST['id']; }?>'
+                      }
+                  }]
+              });
+          },
+
+          // Finalize the transaction
+          onApprove: function(data, actions) {
+              return actions.order.capture().then(function(details) {
+                  // Show a success message to the buyer
+                  alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                  document.getElementById("myform").submit()
+              });
+          }
+
+
+      }).render('#paypal-button-container');
+  </script>
 
  <?php
 include('./stuInclude/footer.php'); 

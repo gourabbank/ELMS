@@ -33,7 +33,7 @@ video {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: #225470;
+  background-color: #572270;
   z-index: 1;
   opacity: 0.8;
 }
@@ -84,7 +84,7 @@ a.social-hover:hover {
   }
   .custom-nav .custom-nav-item a {
     padding: 10px 20px;
-    background-color: #225470;
+    background-color: #6d828f;
   }
 
   .custom-nav-item:hover {
