@@ -56,7 +56,7 @@ include('../dbConnection.php');
           ?>
        </ul>
        <h5 class="text-center">Quiz</h5>
-       
+       <button id="certi" style="display:none;" class="position-relative top-0 start-0 text-center">Generate Certificate</button>
      </div>
      <div class="col-sm-8">
         <video id="videoarea" src="" class="mt-5 w-75 ml-2" controls>

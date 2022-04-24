@@ -26,7 +26,18 @@ function videoStoppedPlaying(event) {
   document.getElementById("played").innerHTML = Math.round(timePlayed)+"";
   // Count as complete only if end of video was reached
   if(timePlayed>=duration && event.type=="ended") {
+
     document.getElementById("status").className="complete";
+    
+    var comp = document.getElementById("status"); 
+    console.log(comp.className);
+    if(comp.className==="complete")
+    {
+      var certi=document.getElementById("certi")
+      console.log(certi);
+      if (certi.style.display === "none") {
+          certi.style.display = "block";
+    }} 
   }
 }
 
