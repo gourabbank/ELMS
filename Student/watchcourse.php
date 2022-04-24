@@ -56,6 +56,20 @@ include('../dbConnection.php');
           ?>
        </ul>
        <h5 class="text-center">Quiz</h5>
+         <?php
+            if(isset($_GET['course_id']))
+            {
+               $course_id = $_GET['course_id'];
+               $sql = "SELECT lessoncount FROM course WHERE course_id = '$course_id'";
+               $result = $conn->query($sql);
+               $row = $result->fetch_assoc();
+               $totvideo = $row['lessoncount'];
+            }
+         ?>
+         <script>
+            var countvideo ="<?php echo $totvideo ?>";
+            console.log(countvideo);
+         </script>'
        <button id="certi" style="display:none;" class="position-relative top-0 start-0 text-center">Generate Certificate</button>
      </div>
      <div class="col-sm-8">

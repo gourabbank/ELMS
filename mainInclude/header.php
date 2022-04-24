@@ -70,7 +70,7 @@
               $stuType = $row["user_type"];
               if($stuType==4)
               {
-                echo '<h1 class= "fw-bold text-success">You are a VIP Member '.$stuName.'</h1>';
+                echo '<h1 class= "fw-bold text-warning">You are a VIP Member '.$stuName.'</h1>';
               }
               else
               {
