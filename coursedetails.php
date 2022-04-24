@@ -17,6 +17,10 @@ include('dbConnection.php');
   $row = $result->fetch_assoc();
   $stuType = $row['user_type'];
  }
+ else
+ {
+   $stuType=3;
+ }
 ?>
 <?php
   include('./dbConnection.php');

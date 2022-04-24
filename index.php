@@ -36,7 +36,7 @@ include('dbConnection.php');
       </div>
       <div class="vid-content" >
         <h1 class="my-content">Welcome to eLMS</h1>
-        <small class="my-content">Learn and Implement</small><br />
+        <small class="my-content">Learn and Implement</small><br/>
         <?php    
               if(!isset($_SESSION['is_login'])){
                 echo '<a class="btn btn-danger mt-3" href="#" data-toggle="modal" data-target="#stuRegModalCenter">Get Started</a>';
@@ -115,7 +115,8 @@ include('dbConnection.php');
           $sql = "SELECT * FROM course LIMIT 3,3";
           $result = $conn->query($sql);
           if($result->num_rows > 0){ 
-            while($row = $result->fetch_assoc()){
+            while($row = $result->fetch_assoc())
+            {
               $course_id = $row['course_id'];
               if($stuType!=4)
               {
@@ -128,7 +129,7 @@ include('dbConnection.php');
                         <p class="card-text">'.$row['course_desc'].'</p>
                       </div>
                       <div class="card-footer">
-                        <p class="card-text d-inline">Price: <small><del>&#8377 '.$row['course_original_price'].'</del></small> <span class="font-weight-bolder">&#8377 '.$row['course_price'].'<span></p> <a class="btn btn-primary text-white font-weight-bolder float-right" href="#">Enroll</a>
+                        <p class="card-text d-inline">Price: <small><del>&#8377 '.$row['course_original_price'].'</del></small> <span class="font-weight-bolder">&#8377 '.$row['course_price'].'<span></p> <a class="btn btn-primary text-white font-weight-bolder float-right" href="coursedetails.php?course_id='.$course_id.'">Enroll</a>
                       </div>
                     </div>
                   </a>  ';
@@ -144,7 +145,7 @@ include('dbConnection.php');
                         <p class="card-text">'.$row['course_desc'].'</p>
                       </div>
                       <div class="card-footer">
-                        <p class="card-text d-inline">Price: <small><del>&#8377 '.$row['course_original_price'].'</del></small> <span class="font-weight-bolder">&#8377 '."FREE".'<span></p> <a class="btn btn-primary text-white font-weight-bolder float-right" href="#">Enroll</a>
+                        <p class="card-text d-inline">Price: <small><del>&#8377 '.$row['course_original_price'].'</del></small> <span class="font-weight-bolder">&#8377 '."FREE".'<span></p> <a class="btn btn-primary text-white font-weight-bolder float-right" href="coursedetails.php?course_id='.$course_id.'">Enroll</a>
                       </div>
                     </div>
                   </a>  ';

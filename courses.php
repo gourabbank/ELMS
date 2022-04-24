@@ -20,6 +20,10 @@ include('dbConnection.php');
   $row = $result->fetch_assoc();
   $stuType = $row['user_type'];
  }
+ else
+ {
+   $stuType=3;
+ }
 ?>
     <div class="container-fluid bg-dark"> <!-- Start Course Page Banner -->
       <div class="row">

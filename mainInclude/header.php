@@ -40,7 +40,6 @@
               session_start();   
               if (isset($_SESSION['is_login']))
               {
-                if()  
                 echo '<li class="nav-item custom-nav-item"><a href="student/studentProfile.php" class="nav-link">My Profile</a></li> <li class="nav-item custom-nav-item"><a href="logout.php" class="nav-link">Logout</a></li>';
               } else 
               {
@@ -55,18 +54,34 @@
       </div>
       <div>
       <?php 
-              //session_start();   
-              if (isset($_SESSION['is_login']))
-              {
-                $stuName=$_SESSION['stuName'];
-                echo'<h1>You are GOLD</h1>';
-              }
-              else
-              {
-                echo'<h1 class= " position-relative top-0 end-10">Care to upgrade</h1>';
-              }
-        ?>
+        //session_start();   
+        if (isset($_SESSION['is_login']))
+        {
+          $stuEmail = $_SESSION['stuLogEmail'];
+          $sql = "SELECT * FROM student WHERE stu_email='$stuEmail'";
+          $result = $conn->query($sql);
+          if($result->num_rows == 1)
+          {
+            $row = $result->fetch_assoc();
+            $stuId = $row["stu_id"];
+            $stuName = $row["stu_name"]; 
+            $stuOcc = $row["stu_occ"];
+            $stuImg = $row["stu_img"];
+            $stuType = $row["user_type"];
+            if($stuType==4)
+            {
+              echo "<h1>You are a VIP Member ".$stuName."</h1>";
+            }
+            else
+            {
+              echo'<a class="btn btn-primary text-white font-weight-bolder float-right" href="./Student/studentProfile.php">Upgrade To VIP</a>';
+            }
+          }
+        }
+      ?>
       </div>
     </nav> <!-- End Navigation -->
+  </body>
+</html>
 
     
