@@ -55,7 +55,7 @@ session_start();
       <div class="text-center">
         <!-- Set up a container element for the button -->
         <div id="paypal-button-container"></div>
-        <a href="./courses.php" class="btn btn-secondary">Cancel</a>
+        <a href="studentProfile.php" class="btn btn-secondary">Cancel</a>
       </div>
      </form>
      <small class="form-text text-muted">Note: Complete Payment by Clicking Checkout Button</small>

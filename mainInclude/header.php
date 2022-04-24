@@ -53,34 +53,34 @@
         
       </div>
       <div>
-      <?php 
-        //session_start();   
-        if (isset($_SESSION['is_login']))
-        {
-          $stuEmail = $_SESSION['stuLogEmail'];
-          $sql = "SELECT * FROM student WHERE stu_email='$stuEmail'";
-          $result = $conn->query($sql);
-          if($result->num_rows == 1)
+        <?php 
+          //session_start();   
+          if (isset($_SESSION['is_login']))
           {
-            $row = $result->fetch_assoc();
-            $stuId = $row["stu_id"];
-            $stuName = $row["stu_name"]; 
-            $stuOcc = $row["stu_occ"];
-            $stuImg = $row["stu_img"];
-            $stuType = $row["user_type"];
-            if($stuType==4)
+            $stuEmail = $_SESSION['stuLogEmail'];
+            $sql = "SELECT * FROM student WHERE stu_email='$stuEmail'";
+            $result = $conn->query($sql);
+            if($result->num_rows == 1)
             {
-              echo "<h1>You are a VIP Member ".$stuName."</h1>";
-            }
-            else
-            {
-              echo'<a class="btn btn-primary text-white font-weight-bolder float-right" href="./Student/studentProfile.php">Upgrade To VIP</a>';
+              $row = $result->fetch_assoc();
+              $stuId = $row["stu_id"];
+              $stuName = $row["stu_name"]; 
+              $stuOcc = $row["stu_occ"];
+              $stuImg = $row["stu_img"];
+              $stuType = $row["user_type"];
+              if($stuType==4)
+              {
+                echo '<h1 class= "fw-bold text-success">You are a VIP Member '.$stuName.'</h1>';
+              }
+              else
+              {
+                echo'<a class="btn btn-primary text-white font-weight-bolder float-right" href="./Student/studentProfile.php">Upgrade To VIP</a>';
+              }
             }
           }
-        }
-      ?>
+        ?>
       </div>
-    </nav> <!-- End Navigation -->
+    </nav>  <!-- End Navigation -->
   </body>
 </html>
 
