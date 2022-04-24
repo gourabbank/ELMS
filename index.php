@@ -2,7 +2,30 @@
   include('./dbConnection.php');
   // Header Include from mainInclude 
   include('./mainInclude/header.php'); 
-?>  
+?>   
+<?php 
+include('dbConnection.php');
+ if(!isset($_SESSION)){ 
+   session_start(); 
+ } 
+ if(isset($_SESSION['is_login'])){
+  $stuLogEmail = $_SESSION['stuLogEmail'];
+ } 
+ // else {
+ //  echo "<script> location.href='../index.php'; </script>";
+ // }
+ if(isset($stuLogEmail))
+ {
+  $sql = "SELECT user_type FROM student WHERE stu_email = '$stuLogEmail'";
+  $result = $conn->query($sql);
+  $row = $result->fetch_assoc();
+  $stuType = $row['user_type'];
+ }
+ else
+ {
+  $stuType = 3;
+ }
+?>
     <!-- Start Video Background-->
     <div class="container-fluid remove-vid-marg">
       <div class="vid-parent">
@@ -51,19 +74,38 @@
         if($result->num_rows > 0){ 
           while($row = $result->fetch_assoc()){
             $course_id = $row['course_id'];
-            echo '
-            <a href="coursedetails.php?course_id='.$course_id.'" class="btn" style="text-align: left; padding:0px; margin:0px;">
-              <div class="card">
-                <img src="'.str_replace('..', '.', $row['course_img']).'" class="card-img-top" alt="Guitar" />
-                <div class="card-body">
-                  <h5 class="card-title">'.$row['course_name'].'</h5>
-                  <p class="card-text">'.$row['course_desc'].'</p>
+            if($stuType!=4)
+            {
+              echo '
+              <a href="coursedetails.php?course_id='.$course_id.'" class="btn" style="text-align: left; padding:0px; margin:0px;">
+                <div class="card">
+                  <img src="'.str_replace('..', '.', $row['course_img']).'" class="card-img-top" alt="Guitar" />
+                  <div class="card-body">
+                    <h5 class="card-title">'.$row['course_name'].'</h5>
+                    <p class="card-text">'.$row['course_desc'].'</p>
+                  </div>
+                  <div class="card-footer">
+                    <p class="card-text d-inline">Price: <small><del>&#8377 '.$row['course_original_price'].'</del></small> <span class="font-weight-bolder">&#8377 '.$row['course_price'].'<span></p> <a class="btn btn-primary text-white font-weight-bolder float-right" href="coursedetails.php?course_id='.$course_id.'">Enroll</a>
+                  </div>
                 </div>
-                <div class="card-footer">
-                  <p class="card-text d-inline">Price: <small><del>&#8377 '.$row['course_original_price'].'</del></small> <span class="font-weight-bolder">&#8377 '.$row['course_price'].'<span></p> <a class="btn btn-primary text-white font-weight-bolder float-right" href="coursedetails.php?course_id='.$course_id.'">Enroll</a>
+              </a>  ';
+            }
+            else
+            {
+              echo '
+              <a href="coursedetails.php?course_id='.$course_id.'" class="btn" style="text-align: left; padding:0px; margin:0px;">
+                <div class="card">
+                  <img src="'.str_replace('..', '.', $row['course_img']).'" class="card-img-top" alt="Guitar" />
+                  <div class="card-body">
+                    <h5 class="card-title">'.$row['course_name'].'</h5>
+                    <p class="card-text">'.$row['course_desc'].'</p>
+                  </div>
+                  <div class="card-footer">
+                    <p class="card-text d-inline">Price: <small><del>&#8377 '.$row['course_original_price'].'</del></small> <span class="font-weight-bolder">&#8377 '."FREE".'<span></p> <a class="btn btn-primary text-white font-weight-bolder float-right" href="coursedetails.php?course_id='.$course_id.'">Enroll</a>
+                  </div>
                 </div>
-              </div>
-            </a>  ';
+              </a>  ';
+            }
           }
         }
         ?>   
@@ -75,19 +117,38 @@
           if($result->num_rows > 0){ 
             while($row = $result->fetch_assoc()){
               $course_id = $row['course_id'];
-              echo '
-                <a href="coursedetails.php?course_id='.$course_id.'"  class="btn" style="text-align: left; padding:0px;">
-                  <div class="card">
-                    <img src="'.str_replace('..', '.', $row['course_img']).'" class="card-img-top" alt="Guitar" />
-                    <div class="card-body">
-                      <h5 class="card-title">'.$row['course_name'].'</h5>
-                      <p class="card-text">'.$row['course_desc'].'</p>
+              if($stuType!=4)
+              {
+                echo '
+                  <a href="coursedetails.php?course_id='.$course_id.'"  class="btn" style="text-align: left; padding:0px;">
+                    <div class="card">
+                      <img src="'.str_replace('..', '.', $row['course_img']).'" class="card-img-top" alt="Guitar" />
+                      <div class="card-body">
+                        <h5 class="card-title">'.$row['course_name'].'</h5>
+                        <p class="card-text">'.$row['course_desc'].'</p>
+                      </div>
+                      <div class="card-footer">
+                        <p class="card-text d-inline">Price: <small><del>&#8377 '.$row['course_original_price'].'</del></small> <span class="font-weight-bolder">&#8377 '.$row['course_price'].'<span></p> <a class="btn btn-primary text-white font-weight-bolder float-right" href="#">Enroll</a>
+                      </div>
                     </div>
-                    <div class="card-footer">
-                      <p class="card-text d-inline">Price: <small><del>&#8377 '.$row['course_original_price'].'</del></small> <span class="font-weight-bolder">&#8377 '.$row['course_price'].'<span></p> <a class="btn btn-primary text-white font-weight-bolder float-right" href="#">Enroll</a>
+                  </a>  ';
+              }
+              else
+              {
+                echo '
+                  <a href="coursedetails.php?course_id='.$course_id.'"  class="btn" style="text-align: left; padding:0px;">
+                    <div class="card">
+                      <img src="'.str_replace('..', '.', $row['course_img']).'" class="card-img-top" alt="Guitar" />
+                      <div class="card-body">
+                        <h5 class="card-title">'.$row['course_name'].'</h5>
+                        <p class="card-text">'.$row['course_desc'].'</p>
+                      </div>
+                      <div class="card-footer">
+                        <p class="card-text d-inline">Price: <small><del>&#8377 '.$row['course_original_price'].'</del></small> <span class="font-weight-bolder">&#8377 '."FREE".'<span></p> <a class="btn btn-primary text-white font-weight-bolder float-right" href="#">Enroll</a>
+                      </div>
                     </div>
-                  </div>
-                </a>  ';
+                  </a>  ';
+              }
             }
           }
         ?>

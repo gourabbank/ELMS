@@ -46,7 +46,6 @@
           ?> 
           <li class="nav-item custom-nav-item"><a href="Student/stufeedback.php" class="nav-link">Feedback</a></li>
           <li class="nav-item custom-nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
-          <li class="nav-item custom-nav-item"><a href="#" class="nav-link">Register as VIP</a></li>
         </ul>
       </div>
     </nav> <!-- End Navigation -->

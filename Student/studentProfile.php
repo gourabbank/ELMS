@@ -82,11 +82,7 @@ include_once('../dbConnection.php');
           }
           else
           {
-
             echo '<h2 class=" m-5">Congratulations! You are a Premium Subscriber</h2>';
-
-            echo '<h2 class=" m-5">Congratulations You are a Premium Subscriber</h2>';
-
           }
     ?>
     
