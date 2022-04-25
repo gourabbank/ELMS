@@ -90,7 +90,7 @@ include('../dbConnection.php');
             console.log(countvideo);
          </script>
          
-            <a href="../certificate/in.php" id="certi" style="display:block;" type="button" class="btn btn-secondary">Get Certificate</a>
+            <a href="../certificate/in.php" id="certi" style="display:none;" type="button" class="btn btn-secondary">Get Certificate</a>
          
      </div>
      <div class="col-sm-8">
