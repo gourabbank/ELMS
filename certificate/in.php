@@ -47,7 +47,7 @@
 <body>
     <div class="container">
         <div class="logo">
-            An Organization
+            ELMS-Learn And Implement
         </div>
 
         <div class="marquee">

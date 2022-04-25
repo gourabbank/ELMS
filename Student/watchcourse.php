@@ -58,6 +58,23 @@ include('../dbConnection.php');
           ?>
        </ul>
        <h5 class="text-center">Quiz</h5>
+       <ul id="quizlist" class="nav flex-column">
+          <?php
+             
+             if(isset($_GET['course_id'])){
+              $course_id = $_GET['course_id'];
+            //   echo $lesson_id;
+              $sql = "SELECT * FROM quiz WHERE course_id = '$course_id'";
+              $result = $conn->query($sql);
+              if($result->num_rows > 0){
+               while($row = $result->fetch_assoc()){
+                echo '<li class="nav-item border-bottom py-2" ='.$row['quiz_link'].' style="cursor: pointer;"><a href='.$row['quiz_link'].'>'. $row['lesson_name'] .'</a></li>';
+               }
+              }
+             }
+          ?>
+       </ul>
+          
          <?php
             if(isset($_GET['course_id']))
             {
@@ -67,13 +84,13 @@ include('../dbConnection.php');
                $row = $result->fetch_assoc();
                $totvideo = $row['lessoncount'];
             }
-         ?>
+         ?> 
          <script>
             var countvideo ="<?php echo $totvideo ?>";
             console.log(countvideo);
          </script>
          
-            <a href="../certificate/in.php" id="certi" style="display:block;" type="button" class="btn btn-secondary">Get Certificate</a>
+            <a href="../certificate/in.php" id="certi" style="display:none;" type="button" class="btn btn-secondary">Get Certificate</a>
          
      </div>
      <div class="col-sm-8">
