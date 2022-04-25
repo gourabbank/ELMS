@@ -33,8 +33,10 @@ include('../dbConnection.php');
 <body>
 
    <div class="container-fluid bg-success p-2" >
-    <h3>Welcome to eLMS</h3>
+   <br>
     <a class="btn btn-danger" href="./myCourse.php">My Courses</a>
+    <br>
+    <h1> </h1>
    </div>
    
    <div class="container-fluid">
@@ -69,8 +71,8 @@ include('../dbConnection.php');
          <script>
             var countvideo ="<?php echo $totvideo ?>";
             console.log(countvideo);
-         </script>'
-       <button id="certi" style="display:none;" class="position-relative top-0 start-0 text-center">Generate Certificate</button>
+         </script>
+       <button id="certi" style="display:none;" type="button" class="btn btn-secondary">Get Certificate</button>
      </div>
      <div class="col-sm-8">
         <video id="videoarea" src="" class="mt-5 w-75 ml-2" controls>
