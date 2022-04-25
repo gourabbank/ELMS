@@ -92,7 +92,7 @@
                 if(isset($_GET['course_id']))
                 {
                     $courseid = $_SESSION['course_id'];
-                } 
+                }
                 //$stuEmail="gourabbank123@gmail.com";
                 $sql = "SELECT * FROM course WHERE course_id='$courseid'";
                 $result = $conn->query($sql);
