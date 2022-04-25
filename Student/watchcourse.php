@@ -88,7 +88,7 @@ include('../dbConnection.php');
               }
              }
           ?> -->
-         <?php
+         <!-- <?php
             if(isset($_GET['course_id']))
             {
                $course_id = $_GET['course_id'];
@@ -97,7 +97,7 @@ include('../dbConnection.php');
                $row = $result->fetch_assoc();
                $totvideo = $row['lessoncount'];
             }
-         ?>
+         ?> -->
          <script>
             var countvideo ="<?php echo $totvideo ?>";
             console.log(countvideo);
