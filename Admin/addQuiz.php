@@ -19,13 +19,13 @@ include('../dbConnection.php');
 	 $msg = '<div class="alert alert-warning col-sm-6 ml-5 mt-2" role="alert"> Fill All Fields </div>';
 	} else {
 	 // Assigning User Values to Variable
-	 $quiz_id = $_REQUEST['quiz_id'];
+	//  $quiz_id = $_REQUEST['quiz_id'];
 	 $lesson_id = $_REQUEST['lesson_id'];
 	 $lesson_name = $_REQUEST['lesson_name'];
 	 $quiz_link = $_REQUEST['quiz_link'];
-	 $course_id = $_REQUEST['course_id'];
+	//  $course_id = $_REQUEST['course_id'];
 	
-	  $sql = "INSERT INTO quiz (quiz_id, quiz_link,lesson_id, lesson_name,course_id) VALUES ('$quiz_id','$quiz_link','$lesson_id','$lesson_name','$course_id')";
+	  $sql = "INSERT INTO quiz (quiz_link,lesson_id, lesson_name) VALUES ('$quiz_link','$lesson_id','$lesson_name')";
 	  if($conn->query($sql) == TRUE){
 	   // below msg display on form submit success
 	   $msg = '<div class="alert alert-success col-sm-6 ml-5 mt-2" role="alert"> Quiz Added Successfully </div>';
@@ -66,10 +66,7 @@ include('../dbConnection.php');
 
 	</head>
 	<title>Add Quiz</title>
-	<?php 
-	$qry = $conn->query("SELECT * FROM quiz where quiz_id = ".$_GET['quiz_id'])->fetch_array();
-
-	?>
+	
 </head>
 
 <?php
