@@ -82,7 +82,24 @@
         <div class="reason">
 
             For Completing<br/>
-            
+            <?php
+                if(!isset($_SESSION))
+                { 
+                    session_start(); 
+                }
+                //include('header.php'); 
+                include_once('dbConnection.php');
+                if(isset($_GET['course_id']))
+                {
+                    $courseid = $_SESSION['course_id'];
+                } 
+                //$stuEmail="gourabbank123@gmail.com";
+                $sql = "SELECT * FROM course WHERE course_id='$courseid'";
+                $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
+                $coursename = $row["course_name"];
+                echo $coursename;
+            ?>
 
         </div>
     </div>
