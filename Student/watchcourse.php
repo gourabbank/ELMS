@@ -58,37 +58,7 @@ include('../dbConnection.php');
           ?>
        </ul>
        <h5 class="text-center">Quiz</h5>
-       <ul id="quizlist" class="nav flex-column">
-          <?php
-             
-             if(isset($_GET['course_id'])){
-              $course_id = $_GET['course_id'];
-            //   echo $lesson_id;
-              $sql = "SELECT * FROM quiz WHERE course_id = '$course_id'";
-              $result = $conn->query($sql);
-              if($result->num_rows > 0){
-               while($row = $result->fetch_assoc()){
-                echo '<li class="nav-item border-bottom py-2" ='.$row['quiz_link'].' style="cursor: pointer;"><a href='.$row['quiz_link'].'>'. $row['lesson_name'] .'</a></li>';
-               }
-              }
-             }
-          ?>
-       </ul>
-       <!-- <button id="certi" style="display:none;" class="position-relative top-0 start-0 text-center">Generate Certificate</button> -->
-       <!-- <?php
-             if(isset($_GET['quiz_id'])){
-              $quiz_id = $_GET['quiz_id'];
-              $sql = "SELECT * FROM quiz WHERE quiz_id = '$quiz_id'";
-              $result = $conn->query($sql);
-              if($result->num_rows > 0){
-               // <a href="https://google.com" class="btn btn-primary">Quiz 1</a>
-               while($row = $result->fetch_assoc()){
-                echo '<a class="btn btn-secondary" href='.$row['quiz_link'].' style="cursor: pointer;">'. $row['lesson_name'] .'</a>';
-               }
-              }
-             }
-          ?> -->
-         <!-- <?php
+         <?php
             if(isset($_GET['course_id']))
             {
                $course_id = $_GET['course_id'];
@@ -97,7 +67,7 @@ include('../dbConnection.php');
                $row = $result->fetch_assoc();
                $totvideo = $row['lessoncount'];
             }
-         ?> -->
+         ?>
          <script>
             var countvideo ="<?php echo $totvideo ?>";
             console.log(countvideo);
