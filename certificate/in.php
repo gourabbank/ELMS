@@ -1,4 +1,14 @@
-
+<?php
+    if(!isset($_SESSION))
+    { 
+    session_start(); 
+    }
+    include_once('dbConnection.php');
+    if(isset($_SESSION['is_login']))
+    {
+        $stuLogEmail = $_SESSION['stuLogEmail'];
+    } 
+?>
 <html>
 <head>
     <style>
@@ -82,26 +92,17 @@
         <div class="reason">
 
             For Completing<br/>
-            <?php
-                if(!isset($_SESSION))
-                { 
-                    session_start(); 
-                }
-                //include('header.php'); 
-                include_once('dbConnection.php');
-                if(isset($_GET['course_id']))
-                {
-                    $courseid = $_SESSION['course_id'];
-                }
-                //$stuEmail="gourabbank123@gmail.com";
-                $sql = "SELECT * FROM course WHERE course_id='$courseid'";
+            <?php 
+            if(isset($stuLogEmail))
+            {
+                $sql = "SELECT co.order_id, c.course_id, c.course_name, c.course_duration, c.course_desc, c.course_img, c.course_author, c.course_original_price, c.course_price FROM courseorder AS co JOIN course AS c ON c.course_id = co.course_id WHERE co.stu_email = '$stuLogEmail'";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
-                $coursename = $row["course_name"];
-                echo $coursename;
+                echo $row['course_name'];
+            }
             ?>
-
         </div>
+        <img src="veslogo.jpeg" alt="VES LOGO" width="250" height="250">
     </div>
 </body>
 </html>

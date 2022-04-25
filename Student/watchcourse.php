@@ -89,8 +89,8 @@ include('../dbConnection.php');
             var countvideo ="<?php echo $totvideo ?>";
             console.log(countvideo);
          </script>
-            <h5 class="text-center">Certificate</h5>
-            <a href="../certificate/in.php" id="certi" style="display:none;" type="button" class="btn btn-secondary">Get Certificate</a>
+         
+            <a href="../certificate/in.php" id="certi" style="display:block;" type="button" class="btn btn-secondary">Get Certificate</a>
          
      </div>
      <div class="col-sm-8">
