@@ -18,10 +18,42 @@ include('../dbConnection.php');
   <form action="" class="mt-3 form-inline d-print-none">
     <div class="form-group mr-3">
       <label for="checkid">Enter Lesson ID: </label>
-      <input type="text" class="form-control ml-3" id="checkid" name="checkid" onkeypress="isInputNumber(event)">
+
+      <select name = "checkid">
+      <option>Select Lesson</option>
+      <button type="submit" class="btn btn-danger">Search</button>
     </div>
-    <button type="submit" class="btn btn-danger">Search</button>
+   
   </form>
+
+  <?php
+  $con = mysqli_connect("localhost","root","","lms_db");
+  $sq = "SELECT * FROM lesson";
+  $all_categories = mysqli_query($con,$sq);
+            
+                // use a while loop to fetch data 
+                // from the $all_categories variable 
+                // and individually display as an option
+                while ($category = mysqli_fetch_array(
+                        $all_categories,MYSQLI_ASSOC)):; 
+            ?>
+                <option value="<?php echo $category["lesson_id"];
+                    // The value we usually set is the primary key
+                ?>">
+                    <?php ;
+                    printf("%s (%s)\n",$category["lesson_id"],$category["lesson_name"]) ;
+                        // To show the category name to the user
+                    ?>
+                </option>
+            <?php 
+                endwhile; 
+                // While loop must be terminated
+            ?>
+
+              </select>
+              <button type="submit" class="btn btn-danger">Search</button>
+              
+              
   <?php
   $sql = "SELECT lesson_id FROM lesson";
   $result = $conn->query($sql);
@@ -44,16 +76,16 @@ include('../dbConnection.php');
               <tr>
               <th scope="col">Quiz ID</th>
               <th scope="col">Quiz Name</th>
-              <th scope="col">Points</th>
+              <th scope="col">Quiz Link</th>
               <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>';
-              while($row = $result->fetch_assoc()){
+            while($row = $result->fetch_assoc()){
                 echo '<tr>';
                 echo '<th scope="row">'.$row["quiz_id"].'</th>';
                 echo '<td>'. $row["lesson_name"].'</td>';
-                echo '<td>'.$row["total_marks"].'</td>';
+                echo '<td>'.$row["quiz_link"].'</td>';
                 echo '<td><form action="editQuiz.php" method="POST" class="d-inline"> <input type="hidden" name="id" value='. $row["lesson_id"] .'><button type="submit" class="btn btn-info mr-3" name="view" value="View"><i class="fas fa-pen"></i></button></form>  
                 <form action="" method="POST" class="d-inline"><input type="hidden" name="id" value='. $row["lesson_id"] .'><button type="submit" class="btn btn-secondary" name="delete" value="Delete"><i class="far fa-trash-alt"></i></button></form></td>
               </tr>';

@@ -17,12 +17,43 @@ include('../dbConnection.php');
 <div class="col-sm-9 mt-5  mx-3">
   <form action="" class="mt-3 form-inline d-print-none">
     <div class="form-group mr-3">
-      <label for="checkid">Enter Course ID: </label>
-      <input type="text" class="form-control ml-3" id="checkid" name="checkid" onkeypress="isInputNumber(event)">
+      <label for="checkid">Enter Course ID :  </label>
+      
+      <select name = "checkid">
+      <button type="submit" class="btn btn-danger">Search</button>
     </div>
-    <button type="submit" class="btn btn-danger">Search</button>
+   
   </form>
+
   <?php
+  $con = mysqli_connect("localhost","root","","lms_db");
+  $sq = "SELECT * FROM course";
+  $all_categories = mysqli_query($con,$sq);
+            
+                // use a while loop to fetch data 
+                // from the $all_categories variable 
+                // and individually display as an option
+                while ($category = mysqli_fetch_array(
+                        $all_categories,MYSQLI_ASSOC)):; 
+            ?>
+                <option value="<?php echo $category["course_id"];
+                    // The value we usually set is the primary key
+                ?>">
+                    <?php ;
+                    printf("%s (%s)\n",$category["course_id"],$category["course_name"]) ;
+                        // To show the category name to the user
+                    ?>
+                </option>
+            <?php 
+                endwhile; 
+                // While loop must be terminated
+            ?>
+
+              </select>
+              <button type="submit" class="btn btn-danger">Search</button>
+              
+              
+<?php
   $sql = "SELECT course_id FROM course";
   $result = $conn->query($sql);
   while($row = $result->fetch_assoc()){
@@ -35,7 +66,11 @@ include('../dbConnection.php');
         $_SESSION['course_name'] = $row['course_name'];
         
         ?>
-        <h3 class="mt-5 bg-dark text-white p-2">Course ID : <?php if(isset($row['course_id'])) {echo $row['course_id']; } ?> Course Name: <?php if(isset($row['course_name'])) {echo $row['course_name']; } ?></h3>
+        <h3 class="mt-5 bg-dark text-white p-2">Course ID : 
+          <?php if(isset($row['course_id'])) {echo $row['course_id']; } ?> Course Name: 
+          <?php if(isset($row['course_name'])) {echo $row['course_name']; } ?></h3>
+        
+        
         <?php
           $sql = "SELECT * FROM lesson WHERE course_id = {$_REQUEST['checkid']}";
           $result = $conn->query($sql);

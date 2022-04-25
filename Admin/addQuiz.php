@@ -1,4 +1,3 @@
-
 <?php 
 if(!isset($_SESSION)){ 
   session_start(); 
@@ -15,7 +14,7 @@ include('../dbConnection.php');
  }
  if(isset($_REQUEST['quizSubmitBtn'])){
 	// Checking for Empty Fields
-	if(($_REQUEST['lesson_id'] == "") || ($_REQUEST['total_marks'] == "") || ($_REQUEST['lesson_name'] == "")){
+	if(($_REQUEST['lesson_id'] == "") || ($_REQUEST['quiz_link'] == "") || ($_REQUEST['lesson_name'] == "")){
 	 // msg displayed if required field missing
 	 $msg = '<div class="alert alert-warning col-sm-6 ml-5 mt-2" role="alert"> Fill All Fields </div>';
 	} else {
@@ -23,9 +22,10 @@ include('../dbConnection.php');
 	 $quiz_id = $_REQUEST['quiz_id'];
 	 $lesson_id = $_REQUEST['lesson_id'];
 	 $lesson_name = $_REQUEST['lesson_name'];
-	 $total_marks = $_REQUEST['total_marks'];
+	 $quiz_link = $_REQUEST['quiz_link'];
+	//  $course_id = $_REQUEST['course_id'];
 	
-	  $sql = "INSERT INTO quiz (quiz_id, total_marks,lesson_id, lesson_name) VALUES ('$quiz_id','$total_marks','$lesson_id','$lesson_name')";
+	  $sql = "INSERT INTO quiz (quiz_id, quiz_link,lesson_id, lesson_name) VALUES ('$quiz_id','$quiz_link','$lesson_id','$lesson_name')";
 	  if($conn->query($sql) == TRUE){
 	   // below msg display on form submit success
 	   $msg = '<div class="alert alert-success col-sm-6 ml-5 mt-2" role="alert"> Quiz Added Successfully </div>';
@@ -39,8 +39,12 @@ include('../dbConnection.php');
  <div class="col-sm-6 mt-5  mx-3 jumbotron">
   <h3 class="text-center">Add New Quiz</h3>
   <form action="" method="POST" enctype="multipart/form-data">
+  <!-- <div class="form-group">
+      <label for="quiz_id">Course ID</label>
+      <input type="text" class="form-control" id="course_id_id" name="course_id" value ="<?php if(isset($_SESSION['course_id'])){echo $_SESSION['course_id'];} ?>" readonly>
+    </div> -->
     <div class="form-group">
-      <label for="quiz_id">Lesson ID</label>
+      <label for="lesson_id">Lesson ID</label>
       <input type="text" class="form-control" id="lesson_id" name="lesson_id" value ="<?php if(isset($_SESSION['lesson_id'])){echo $_SESSION['lesson_id'];} ?>" readonly>
     </div>
     <div class="form-group">
@@ -48,8 +52,8 @@ include('../dbConnection.php');
       <input type="text" class="form-control" id="lesson_name" name="lesson_name" value ="<?php if(isset($_SESSION['lesson_name'])){echo $_SESSION['lesson_name'];} ?>" readonly>
     </div>
 	<div class="form-group">
-      <label for="total_marks">Total Marks</label>
-      <textarea class="form-control" id="total_marks" name="total_marks" row=2></textarea>
+      <label for="quiz_link">Quiz Link</label>
+      <textarea class="form-control" id="quiz_link" name="quiz_link" row=2></textarea>
     </div>
 	<div class="text-center">
       <button type="submit" class="btn btn-danger" id="quizSubmitBtn" name="quizSubmitBtn">Submit</button>
@@ -62,12 +66,12 @@ include('../dbConnection.php');
 
 	</head>
 	<title>Add Quiz</title>
-	<!-- <?php 
+	<?php 
 	$qry = $conn->query("SELECT * FROM quiz where quiz_id = ".$_GET['quiz_id'])->fetch_array();
 
-	?> -->
+	?>
 </head>
-<body>
+<!-- <body>
 	<div class="container-fluid admin">
 		<div class="col-md-12 alert alert-primary"><?php echo $qry['lesson_name'] ?></div>
 		<button class="btn btn-primary bt-sm" id="new_question"><i class="fa fa-plus"></i>	Add Question</button>
@@ -302,4 +306,8 @@ include('../dbConnection.php');
 		})
 	})
 </script>
-</html>
+</html> -->
+
+<?php
+include('./adminInclude/footer.php'); 
+?>

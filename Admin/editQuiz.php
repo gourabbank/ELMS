@@ -26,8 +26,8 @@ include('../dbConnection.php');
                  <div id="msg"></div>
                  <div class="form-group">
                      <label>Question</label>
-                     <input type="hidden" name="qid" value="<?php echo $_GET['id'] ?>" />
-                     <input type="hidden" name="id" />
+                     <!-- <input type="hidden" name="qid" value="<?php echo $_GET['id'] ?>" />
+                     <input type="hidden" name="id" /> -->
                      <textarea rows='3' name="question" required="required" class="form-control" ></textarea>
                  </div>
                      <label>Options:</label>
@@ -56,6 +56,132 @@ include('../dbConnection.php');
      </div>
  </div>
 </div>
+
+<script>
+	$(document).ready(function(){
+		$(".select2").select2({
+			placeholder:"Select here",
+			width:'resolve'
+		});
+		$('#table').DataTable();
+		$('#new_question').click(function(){
+			$('#msg').html('')
+			$('#manage_question .modal-title').html('Add New Question')
+			$('#manage_question #question-frm').get(0).reset()
+			$('#manage_question').modal('show')
+		})
+		$('#new_student').click(function(){
+			$('#msg').html('')
+			$('#manage_student').modal('show')
+		})
+		$('.edit_question').click(function(){
+			var id = $(this).attr('data-id')
+			$.ajax({
+				url:'./get_question.php?id='+id,
+				error:err=>console.log(err),
+				success:function(resp){
+					if(typeof resp != undefined){
+						resp = JSON.parse(resp)
+						$('[name="id"]').val(resp.qdata.id)
+						$('[name="question"]').val(resp.qdata.question)
+						Object.keys(resp.odata).map(k=>{
+							var data = resp.odata[k]
+							$('[name="question_opt['+k+']"]').val(data.option_txt);
+							if(data.is_right == 1)
+							$('[name="is_right['+k+']"]').prop('checked',true);
+						})
+						$('#manage_question .modal-title').html('Edit Question')
+						$('#manage_question').modal('show')
+
+					}
+				}
+			})
+
+		})
+		$('.is_right').each(function(){
+			$(this).click(function(){
+				$('.is_right').prop('checked',false);
+				$(this).prop('checked',true);
+			})
+		})
+		$('.remove_question').click(function(){
+			var id = $(this).attr('data-id')
+			var conf = confirm('Are you sure to delete this data.');
+			if(conf == true){
+				$.ajax({
+				url:'./delete_question.php?id='+id,
+				error:err=>console.log(err),
+				success:function(resp){
+					if(resp == true)
+						location.reload()
+				}
+			})
+			}
+		})
+		// $('.remove_student').click(function(){
+		// 	var qid = $(this).attr('data-qid')
+		// 	var conf = confirm('Are you sure to delete this data.');
+		// 	if(conf == true){
+		// 		$.ajax({
+		// 		url:'./delete_quiz_student.php?qid='+qid,
+		// 		error:err=>console.log(err),
+		// 		success:function(resp){
+		// 			if(resp == true)
+		// 				location.reload()
+		// 		}
+		// 	})
+		// 	}
+		// })
+		$('#question-frm').submit(function(e){
+			e.preventDefault();
+			$('#question-frm [name="submit"]').attr('disabled',true)
+			$('#question-frm [name="submit"]').html('Saving...')
+			$('#msg').html('')
+
+			$.ajax({
+				url:'./save_question.php',
+				method:'POST',
+				data:$(this).serialize(),
+				error:err=>{
+					console.log(err)
+					alert('An error occured')
+					$('#quiz-frm [name="submit"]').removeAttr('disabled')
+					$('#quiz-frm [name="submit"]').html('Save')
+				},
+				success:function(resp){
+						if(resp == 1){
+							alert('Data successfully saved');
+							location.reload()
+						}
+				}
+			})
+		})
+		$('#student-frm').submit(function(e){
+			e.preventDefault();
+			$('#student-frm [name="submit"]').attr('disabled',true)
+			$('#student-frm [name="submit"]').html('Saving...')
+			$('#msg').html('')
+
+			$.ajax({
+				url:'./quiz_student.php',
+				method:'POST',
+				data:$(this).serialize(),
+				error:err=>{
+					console.log(err)
+					alert('An error occured')
+					$('#quiz-frm [name="submit"]').removeAttr('disabled')
+					$('#quiz-frm [name="submit"]').html('Save')
+				},
+				success:function(resp){
+						if(resp == 1){
+							alert('Data successfully saved');
+							location.reload()
+						}
+				}
+			})
+		})
+	})
+</script>
 
 <?php
 include('./adminInclude/footer.php'); 
