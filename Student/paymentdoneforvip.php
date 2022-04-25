@@ -13,7 +13,7 @@ if(!isset($_SESSION['stuLogEmail'])) {
   $respmsg = "Done";
   $amount = $_POST['TXN_AMOUNT'];
   $date = $date;
- $sql = "UPDATE student SET user_type=4 WHERE stu_email='$stu_email'";
+  $sql = "UPDATE student SET user_type=4 WHERE stu_email='$stu_email'";
    if($conn->query($sql) == TRUE){
     echo "Redirecting to My Profile....";
     echo "<script> setTimeout(() => {

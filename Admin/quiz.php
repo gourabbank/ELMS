@@ -65,6 +65,7 @@ include('../dbConnection.php');
       if(($row['lesson_id']) == $_REQUEST['checkid']){ 
         $_SESSION['lesson_id'] = $row['lesson_id'];
         $_SESSION['lesson_name'] = $row['lesson_name'];
+        $_SESSION['course_id'] = $row['course_id'];
         
         ?>
         <h3 class="mt-5 bg-dark text-white p-2">Lesson ID : <?php if(isset($row['lesson_id'])) {echo $row['lesson_id']; } ?> Lesson Name: <?php if(isset($row['lesson_name'])) {echo $row['lesson_name']; } ?></h3>
