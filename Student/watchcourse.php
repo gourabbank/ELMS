@@ -74,21 +74,7 @@ include('../dbConnection.php');
              }
           ?>
        </ul>
-       <!-- <button id="certi" style="display:none;" class="position-relative top-0 start-0 text-center">Generate Certificate</button> -->
-       <!-- <?php
-             if(isset($_GET['quiz_id'])){
-              $quiz_id = $_GET['quiz_id'];
-              $sql = "SELECT * FROM quiz WHERE quiz_id = '$quiz_id'";
-              $result = $conn->query($sql);
-              if($result->num_rows > 0){
-               // <a href="https://google.com" class="btn btn-primary">Quiz 1</a>
-               while($row = $result->fetch_assoc()){
-                echo '<a class="btn btn-secondary" href='.$row['quiz_link'].' style="cursor: pointer;">'. $row['lesson_name'] .'</a>';
-               }
-              }
-             }
-          ?> -->
-         <!-- <?php
+          <?php
             if(isset($_GET['course_id']))
             {
                $course_id = $_GET['course_id'];
@@ -97,13 +83,13 @@ include('../dbConnection.php');
                $row = $result->fetch_assoc();
                $totvideo = $row['lessoncount'];
             }
-         ?> -->
+         ?> 
          <script>
             var countvideo ="<?php echo $totvideo ?>";
             console.log(countvideo);
          </script>
          
-            <a href="../certificate/in.php" id="certi" style="display:block;" type="button" class="btn btn-secondary">Get Certificate</a>
+            <a href="../certificate/in.php" id="certi" style="display:none;" type="button" class="btn btn-secondary">Get Certificate</a>
          
      </div>
      <div class="col-sm-8">
