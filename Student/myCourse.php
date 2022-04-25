@@ -19,11 +19,14 @@ include_once('../dbConnection.php');
    <div class="jumbotron">
     <h4 class="text-center">All Course</h4>
     <?php 
-   if(isset($stuLogEmail)){
+   if(isset($stuLogEmail))
+   {
     $sql = "SELECT co.order_id, c.course_id, c.course_name, c.course_duration, c.course_desc, c.course_img, c.course_author, c.course_original_price, c.course_price FROM courseorder AS co JOIN course AS c ON c.course_id = co.course_id WHERE co.stu_email = '$stuLogEmail'";
     $result = $conn->query($sql);
-    if($result->num_rows > 0) {
-     while($row = $result->fetch_assoc()){ ?>
+    if($result->num_rows > 0)
+    {
+     while($row = $result->fetch_assoc())
+     { ?>
       <div class="bg-light mb-3">
         <h5 class="card-header"><?php echo $row['course_name']; ?></h5>
           <div class="row">
