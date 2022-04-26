@@ -23,7 +23,7 @@ include('../dbConnection.php');
    $lesson_desc = $_REQUEST['lesson_desc'];
    $course_id = $_REQUEST['course_id'];
    $course_name = $_REQUEST['course_name'];
-   $lesson_link = $_REQUEST['lesson_name'];
+   $lesson_link = $_FILES['lesson_link']['name']; 
    $lesson_link_temp = $_FILES['lesson_link']['tmp_name'];
    $link_folder = '../lessonvid/'.$lesson_link; 
    move_uploaded_file($lesson_link_temp, $link_folder);
