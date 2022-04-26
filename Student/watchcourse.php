@@ -98,8 +98,8 @@ include('../dbConnection.php');
         </video>
         <div id="status" class="incomplete">
           <span>Play status: </span>
-          <span class="status complete">COMPLETE</span>
-          <span class="status incomplete">INCOMPLETE</span>
+          <span class="status complete"></span>
+          <span class="status incomplete"></span>
          <br />
         </div>
         <div>
