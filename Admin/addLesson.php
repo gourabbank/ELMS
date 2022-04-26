@@ -28,7 +28,8 @@ include('../dbConnection.php');
    $link_folder = '../lessonvid/'.$lesson_link; 
    move_uploaded_file($lesson_link_temp, $link_folder);
     $sql = "INSERT INTO lesson (lesson_name, lesson_desc, lesson_link, course_id, course_name) VALUES ('$lesson_name', '$lesson_desc','$link_folder', '$course_id', '$course_name')";
-    if($conn->query($sql) == TRUE){
+    if($conn->query($sql) == TRUE)
+    {
      // below msg display on form submit success
      $msg = '<div class="alert alert-success col-sm-6 ml-5 mt-2" role="alert"> Lesson Added Successfully </div>';
     } else {
