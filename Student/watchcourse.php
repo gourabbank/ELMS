@@ -97,7 +97,7 @@ include('../dbConnection.php');
         <video id="videoarea" src="" class="mt-5 w-75 ml-2" controls>
         </video>
         <div id="status" class="incomplete">
-          <span>Play status: </span>
+          <!-- <span>Play status: </span> -->
           <span class="status complete"></span>
           <span class="status incomplete"></span>
          <br />
